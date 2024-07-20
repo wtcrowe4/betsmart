@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from './Pages/LoginPage'
+import HomePage from './Pages/HomePage';
+
 import './App.css';
 
 function App() {
+  const isLoggedIn = true; // Replace with your logic to check if the user is logged in
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+      <Router>
+        <Routes>
+          {isLoggedIn ? (
+            <Route exact path="/" element={<HomePage />} />
+          ) : (
+            <Route exact path="/" element={<LoginPage />} />
+          )}
+        </Routes>
+      </Router>
+    );
+  }
 
 export default App;
+
